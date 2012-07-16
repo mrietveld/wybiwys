@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<flare>
+  <analytics>
+     <cluster>
+        <agglomerativeCluster>3938</agglomerativeCluster>
+        <communityStructure>3812</communityStructure>
+        <mergeEdge>743</mergeEdge>
+     </cluster>
+     <graph>
+        <test>3343</test>
+        <mmmm>3353</mmmm>
+        <lalala>454</lalala>
+     </graph>
+     <optimization>
+        <AspectRatio>7074</AspectRatio>
+     </optimization>
+  </analytics>
+</flare>
