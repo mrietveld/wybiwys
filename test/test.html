@@ -4,19 +4,26 @@
     <script type="text/javascript" src="../lib/d3.v2.js" ></script>
     <style type="text/css">
 
-line.link {
-  stroke: #ccc;
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
 }
 
-circle.node {
-  fill: #000;
-  stroke: #fff;
+.node {
+  font: 10px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
   stroke-width: 1.5px;
 }
 
     </style>
   </head>
   <body>
+  <div id="chart"></div>
   <!-- script -->
     <script type="text/javascript" src="../src/readBM.js"> </script> 
     <!-- test
