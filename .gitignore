@@ -11,3 +11,6 @@
 
 # local directory for extra stuff
 /extra
+
+# Test data
+/pyweb.log

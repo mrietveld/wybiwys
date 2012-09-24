@@ -97,7 +97,7 @@ bmv.parser = {
   getNameFrom : function(urlText, from) { 
     from = urlText.indexOf(">", from);
     var nameEndPos = urlText.indexOf("<", from);
-    return urlText.substring(from+1, nameEndPos);
+    return urlText.substring(from+1, nameEndPos).replace("&#39;", "'");
   },
   getMarkName : function(urlText) { 
     var nameBeginPos = urlText.search("<A");
