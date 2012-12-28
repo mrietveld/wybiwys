@@ -1,6 +1,6 @@
 var h = 3000,
     i = 0,
-    root; 
+    root = null;
 
 function w() { 
   return window.innerWidth;
@@ -18,14 +18,16 @@ var vis = d3.select("#chart").append("svg")
             .append("g")
               .attr("transform", "translate(40, 0)");
 
+
 // Parse and transform the text
-//
 d3.text("http://localhost:8080/data/bookmarks.html", "text/xml", function(text) {
-  
-  root = bmv.parser.generateTree(text);
  
-  root.x0 = h /2; 
-  root.y0 = 0;
+  if( root == null ) {
+    root = bmv.parser.generateTree(text);
+ 
+    root.x0 = h /2; 
+    root.y0 = 0;
+  }
 
   function toggleAll(d) {
     if (d.children) {

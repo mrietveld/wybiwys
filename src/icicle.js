@@ -1,8 +1,10 @@
 
 var w = window.innerWidth - 100,
-    h = 5000,
+    h = 2500,
     x = d3.scale.linear().range([0, w]),
-    y = d3.scale.linear().range([0, h]);
+    y = d3.scale.linear().range([0, h]),
+    color = d3.scale.category20c(),
+    root = null;
 
 var vis = d3.select("#chart").append("svg")
               .attr("width", w)
@@ -13,8 +15,15 @@ var partition = d3.layout.partition()
                   .value(function(d) { return (d.children ? d.children.length : 1); });
 
 d3.text("http://localhost:8080/data/bookmarks.html", "text/xml", function(text) {
- 
-  var root = bmv.parser.generateTree(text);
+  
+  if( root == null ) { 
+    root = bmv.parser.generateTree(text);
+  }
+  
+  update(root); 
+});
+
+function update(root) { 
   
   var g = vis.selectAll("g")
             .data(partition.nodes(root))
@@ -48,7 +57,7 @@ d3.text("http://localhost:8080/data/bookmarks.html", "text/xml", function(text) 
     y.domain([d.x, d.x + d.dx]);
 
     var t = g.transition()
-      .duration(d3.event.altKey ? 7500 : 750)
+      .duration(d3.event.altKey ? 5000 : 500)
       .attr("transform", function(d) { return "translate(" + x(d.y) + "," + y(d.x) + ")"; });
 
     t.select("rect")
@@ -65,5 +74,4 @@ d3.text("http://localhost:8080/data/bookmarks.html", "text/xml", function(text) 
   function transform(d) {
     return "translate(8," + d.dx * ky / 2 + ")";
   }
-  
-});
+}
