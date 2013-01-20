@@ -2,7 +2,7 @@ var w = window.innerWidth - 1,
     h = window.innerHeight - 1,
     r = Math.min(w, h) / 2,
     color = d3.scale.category20c();
-    bookmarks = null;
+    root = null;
 
 var vis = d3.select("#chart").append("svg")
               .attr("width", w)
@@ -23,11 +23,11 @@ var arc = d3.svg.arc()
 
 d3.text("http://localhost:8080/data/bookmarks.html", "text/xml", function(text) {
 
-	if( bookmarks == null ) { 
-	  bookmarks = bmv.parser.generateTree(text);
+	if( root == null ) { 
+	  root = bmv.parser.generateTree(text);
 	}
 	
-	var path = vis.data([bookmarks]).selectAll("path")
+	var path = vis.data([root]).selectAll("path")
                 .data(partition.nodes)
               .enter().append("path")
                 .attr("display", function(d) { return d.depth ? null : "none"; }) // hide inner ring
@@ -36,7 +36,7 @@ d3.text("http://localhost:8080/data/bookmarks.html", "text/xml", function(text) 
                 .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
                 .attr("fill-rule", "evenodd");
  
-  var text = vis.data([bookmarks]).selectAll("text")
+  var text = vis.data([root]).selectAll("text")
                 .data(partition.nodes)
               .enter().append("text")
                 .attr("transform", function(d) { return "rotate(" + (d.x + d.dx / 2 - Math.PI / 2) / Math.PI * 180 + ")"; })

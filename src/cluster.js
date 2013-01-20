@@ -67,6 +67,14 @@ function update(source) {
   nodeEnter.append("circle")
       .attr("r", 1e-6)
       .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+  
+  nodeEnter.append("title")
+      .text( function(d) { 
+        if( d.link ) { 
+          return d.link
+        }
+        return null;
+       });
 
   nodeEnter.append("text")
       .attr("x", function(d) { return d.children || d._children ? -7 : 7; })
