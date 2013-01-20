@@ -26,7 +26,7 @@ bmv.parser = {
         // add link 
         var mark = { 
             _text : elemText,
-            link: null,
+            link: this.getLink(elemText),
             descr : null,
             name : this.getMarkName(elemText),
             children : null
@@ -106,6 +106,11 @@ bmv.parser = {
   getFolderName : function(urlText) { 
     var nameBeginPos = urlText.search("<H3");
     return this.getNameFrom(urlText, nameBeginPos);
+  },
+  getLink : function(urlText) { 
+    var linkBeginPos = urlText.search('HREF="')+6;
+    var linkEndPos = urlText.indexOf('"', linkBeginPos);
+    return urlText.substring(linkBeginPos, linkEndPos);
   },
    
   /**
